@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srajan Mineral Water</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Selection Page -->
+        <div id="login-selection" class="page active">
+            <div class="container">
+                <h1>Srajan Mineral Water</h1>
+                <div class="login-options">
+                    <button onclick="showLogin('driver')" class="btn btn-primary">Driver Login</button>
+                    <button onclick="showLogin('customer')" class="btn btn-secondary">Customer Login</button>
+                    <button onclick="showLogin('admin')" class="btn btn-admin">Admin Panel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Driver Login Page -->
+        <div id="driver-login" class="page">
+            <div class="container">
+                <h2>Driver Login</h2>
+                <div class="form-group">
+                    <label for="driver-otp">Enter 4-digit OTP</label>
+                    <input type="password" id="driver-otp" maxlength="4" placeholder="0000">
+                </div>
+                <button onclick="driverLogin()" class="btn btn-primary">Login</button>
+                <button onclick="showPage('login-selection')" class="btn btn-back">Back</button>
+            </div>
+        </div>
+
+        <!-- Customer Login Page -->
+        <div id="customer-login" class="page">
+            <div class="container">
+                <h2>Customer Login</h2>
+                <div class="form-group">
+                    <label for="customer-mobile">Enter Mobile Number</label>
+                    <input type="tel" id="customer-mobile" maxlength="10" placeholder="9876543210">
+                </div>
+                <button onclick="customerLogin()" class="btn btn-secondary">Login</button>
+                <button onclick="showPage('login-selection')" class="btn btn-back">Back</button>
+            </div>
+        </div>
+
+        <!-- Driver Dashboard -->
+        <div id="driver-dashboard" class="page">
+            <div class="container">
+                <div class="header">
+                    <h2>Driver Dashboard</h2>
+                    <button onclick="driverLogout()" class="btn btn-logout">Logout</button>
+                </div>
+                <div class="customer-list" id="customer-list">
+                    <!-- Customer list will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Dashboard -->
+        <div id="customer-dashboard" class="page">
+            <div class="container">
+                <div class="header">
+                    <h2 id="customer-name">Customer Dashboard</h2>
+                    <button onclick="customerLogout()" class="btn btn-logout">Logout</button>
+                </div>
+                <div class="customer-info">
+                    <div class="info-card">
+                        <h3>Today's Delivery</h3>
+                        <div id="today-delivery">0 containers</div>
+                    </div>
+                    <div class="info-card">
+                        <h3>Monthly Total</h3>
+                        <div id="monthly-containers">0 containers</div>
+                    </div>
+                    <div class="info-card">
+                        <h3>Monthly Bill</h3>
+                        <div id="monthly-bill">₹0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="admin-panel" class="page">
+            <div class="container">
+                <div class="header">
+                    <h2>Admin Panel</h2>
+                    <button onclick="adminLogout()" class="btn btn-logout">Logout</button>
+                </div>
+
+                <!-- OTP Management -->
+                <div class="admin-section">
+                    <h3>Driver OTP Management</h3>
+                    <div class="form-group">
+                        <label for="new-otp">New Driver OTP</label>
+                        <input type="password" id="new-otp" maxlength="4" placeholder="0000">
+                    </div>
+                    <button onclick="updateDriverOTP()" class="btn btn-primary">Update OTP</button>
+                </div>
+
+                <!-- Customer Management -->
+                <div class="admin-section">
+                    <h3>Customer Management</h3>
+                    <div id="admin-customers">
+                        <!-- Customer list for admin -->
+                    </div>
+                </div>
+
+                <!-- Notepad Updates -->
+                <div class="admin-section">
+                    <h3>Notepad Updates</h3>
+                    <div class="form-group">
+                        <textarea id="notepad-message" placeholder="Enter your message..."></textarea>
+                    </div>
+                    <button onclick="postNotepadUpdate()" class="btn btn-secondary">Post Update</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notepad/News Board -->
+        <div id="notepad" class="page">
+            <div class="container">
+                <div class="header">
+                    <h2>Notices & Updates</h2>
+                    <button onclick="showPage('login-selection')" class="btn btn-back">Back</button>
+                </div>
+                <div id="notepad-content">
+                    <!-- Messages will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Entry Modal -->
+        <div id="delivery-modal" class="modal">
+            <div class="modal-content">
+                <h3>Enter Delivery Details</h3>
+                <div class="form-group">
+                    <label for="delivery-containers">Number of containers delivered</label>
+                    <input type="number" id="delivery-containers" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="delivery-date">Delivery Date</label>
+                    <input type="date" id="delivery-date" value="">
+                </div>
+                <div class="modal-buttons">
+                    <button onclick="submitDelivery()" class="btn btn-primary">Submit</button>
+                    <button onclick="closeDeliveryModal()" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
